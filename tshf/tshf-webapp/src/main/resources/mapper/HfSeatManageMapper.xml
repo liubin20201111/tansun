@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tansun.hf.hx.dao.HfSeatManageMapper">
+  <resultMap id="BaseResultMap" type="com.tansun.hf.hx.entity.HfSeatManage">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="seat_name" jdbcType="VARCHAR" property="seatName" />
+    <result column="seat_status" jdbcType="VARCHAR" property="seatStatus" />
+    <result column="seat_in_time" jdbcType="TIMESTAMP" property="seatInTime" />
+    <result column="seat_out_time" jdbcType="TIMESTAMP" property="seatOutTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, seat_name, seat_status, seat_in_time, seat_out_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from hf_seat_manage
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from hf_seat_manage
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.tansun.hf.hx.entity.HfSeatManage">
+    insert into hf_seat_manage (id, seat_name, seat_status, 
+      seat_in_time, seat_out_time)
+    values (#{id,jdbcType=VARCHAR}, #{seatName,jdbcType=VARCHAR}, #{seatStatus,jdbcType=VARCHAR}, 
+      #{seatInTime,jdbcType=TIMESTAMP}, #{seatOutTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.tansun.hf.hx.entity.HfSeatManage">
+    insert into hf_seat_manage
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="seatName != null">
+        seat_name,
+      </if>
+      <if test="seatStatus != null">
+        seat_status,
+      </if>
+      <if test="seatInTime != null">
+        seat_in_time,
+      </if>
+      <if test="seatOutTime != null">
+        seat_out_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="seatName != null">
+        #{seatName,jdbcType=VARCHAR},
+      </if>
+      <if test="seatStatus != null">
+        #{seatStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="seatInTime != null">
+        #{seatInTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="seatOutTime != null">
+        #{seatOutTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tansun.hf.hx.entity.HfSeatManage">
+    update hf_seat_manage
+    <set>
+      <if test="seatName != null">
+        seat_name = #{seatName,jdbcType=VARCHAR},
+      </if>
+      <if test="seatStatus != null">
+        seat_status = #{seatStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="seatInTime != null">
+        seat_in_time = #{seatInTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="seatOutTime != null">
+        seat_out_time = #{seatOutTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tansun.hf.hx.entity.HfSeatManage">
+    update hf_seat_manage
+    set seat_name = #{seatName,jdbcType=VARCHAR},
+      seat_status = #{seatStatus,jdbcType=VARCHAR},
+      seat_in_time = #{seatInTime,jdbcType=TIMESTAMP},
+      seat_out_time = #{seatOutTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

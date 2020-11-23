@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <!--<modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.tansun</groupId>
+  <artifactId>tshf</artifactId>
+  <version>1.0.0</version>
+  <modules>
+    <module>tshf-webapp</module>
+  </modules>
+  <packaging>pom</packaging>-->
+
+  <parent>
+    <groupId>com.tansun</groupId>
+    <artifactId>tansun</artifactId>
+    <version>1.0.0</version>
+  </parent>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.tansun.tshf</groupId>
+  <artifactId>tshf</artifactId>
+  <packaging>pom</packaging>
+  <modules>
+    <module>tshf-webapp</module>
+  </modules>
+
+  <dependencies>
+
+    <dependency>
+      <groupId>com.tansun.springCloud</groupId>
+      <artifactId>jeespring-framework</artifactId>
+      <version>1.0.0</version>
+    </dependency>
+    <dependency>
+      <groupId>cglib</groupId>
+      <artifactId>cglib-nodep</artifactId>
+      <version>2.2</version>
+    </dependency>
+
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <encoding>UTF-8</encoding>
+          <source>1.8</source>
+          <target>1.8</target>
+          <optimize>true</optimize>
+          <debug>true</debug>
+          <showDeprecation>true</showDeprecation>
+          <showWarnings>false</showWarnings>
+          <compilerArguments>
+            <verbose/>
+            <bootclasspath>${java.home}/lib/rt.jar;${java.home}/lib/jce.jar</bootclasspath>
+          </compilerArguments>
+        </configuration>
+      </plugin>
+    </plugins>
+
+  </build>
+
+</project>

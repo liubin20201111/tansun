@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tansun.hf.hx.dao.HfSeatLogMapper">
+  <resultMap id="BaseResultMap" type="com.tansun.hf.hx.entity.HfSeatLog">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="mid" jdbcType="VARCHAR" property="mid" />
+    <result column="seat_id" jdbcType="VARCHAR" property="seatId" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, mid, seat_id, status, create_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from hf_seat_log
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from hf_seat_log
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.tansun.hf.hx.entity.HfSeatLog">
+    insert into hf_seat_log (id, mid, seat_id, 
+      status, create_time)
+    values (#{id,jdbcType=VARCHAR}, #{mid,jdbcType=VARCHAR}, #{seatId,jdbcType=VARCHAR}, 
+      #{status,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.tansun.hf.hx.entity.HfSeatLog">
+    insert into hf_seat_log
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="mid != null">
+        mid,
+      </if>
+      <if test="seatId != null">
+        seat_id,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="mid != null">
+        #{mid,jdbcType=VARCHAR},
+      </if>
+      <if test="seatId != null">
+        #{seatId,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tansun.hf.hx.entity.HfSeatLog">
+    update hf_seat_log
+    <set>
+      <if test="mid != null">
+        mid = #{mid,jdbcType=VARCHAR},
+      </if>
+      <if test="seatId != null">
+        seat_id = #{seatId,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tansun.hf.hx.entity.HfSeatLog">
+    update hf_seat_log
+    set mid = #{mid,jdbcType=VARCHAR},
+      seat_id = #{seatId,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+
+
+  <select id="findSeatByMember" parameterType="com.tansun.hf.hx.entity.HfSeatLog" resultType="com.tansun.hf.hx.vo.SeateLogVo">
+    select
+    m.id as mId,
+    m.name as mName,
+    m.emp_id as mEmpId,
+    m.mobile as mMobile,
+    m.status as mStatus,
+    m.`type` as mType,
+    m.create_time as mCreateTime,
+    s.id as sId,
+    s.seat_name as sSeatName,
+    s.seat_status as sSeatStatus,
+    s.seat_in_time as inTm,
+    s.seat_out_time as outTm,
+    sl.id as slId,
+    sl.mid as slMid,
+    sl.seat_id as slSeatId,
+    sl.status as slStatus,
+    sl.create_time as slCreateTime
+    from
+        hf_member m,
+        hf_seat_manage s,
+        hf_seat_log sl
+    where
+        m.id = sl.mid
+        and s.id = sl.seat_id
+      <if test="mid != null and mid != '' ">
+        and sl.mid = #{mid}
+      </if>
+      <if test="seatId != null and seatId != '' ">
+        and sl.seat_id = #{seatId}
+      </if>
+  </select>
+
+
+</mapper>

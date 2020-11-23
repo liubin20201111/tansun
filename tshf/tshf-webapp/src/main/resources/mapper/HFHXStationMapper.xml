@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tansun.hf.hx.dao.HFHXStationMapper" >
+  <resultMap id="BaseResultMap" type="com.tansun.hf.hx.entity.HFHXStationEntity" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="stationId" property="stationId" jdbcType="VARCHAR" />
+    <result column="stationCity" property="stationCity" jdbcType="VARCHAR" />
+    <result column="stationPlace" property="stationPlace" jdbcType="VARCHAR" />
+    <result column="stationAddress" property="stationAddress" jdbcType="VARCHAR" />
+    <result column="stationfloor" property="stationfloor" jdbcType="VARCHAR" />
+    <result column="stationroom" property="stationroom" jdbcType="VARCHAR" />
+    <result column="stationType" property="stationType" jdbcType="VARCHAR" />
+    <result column="createTime" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, stationId, stationCity, stationPlace, stationAddress, stationfloor, stationroom,stationType,createTime
+  </sql>
+  <select id="selectByStationId" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from hfhx_station
+    where stationId = #{stationId,jdbcType=VARCHAR}
+  </select>
+  <insert id="insert" parameterType="com.tansun.hf.hx.entity.HFHXStationEntity" >
+    insert into hfhx_station (id, stationId, stationCity, stationPlace, stationAddress, stationfloor, stationroom,stationType,createTime)
+    values (#{id,jdbcType=VARCHAR}, #{stationId,jdbcType=VARCHAR}, #{stationCity,jdbcType=VARCHAR}, 
+      #{stationPlace,jdbcType=VARCHAR}, #{stationAddress,jdbcType=VARCHAR}, #{stationfloor,jdbcType=VARCHAR}, 
+      #{stationroom,jdbcType=VARCHAR}, #{stationType,jdbcType=VARCHAR},#{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.tansun.hf.hx.entity.HFHXStationEntity" >
+    insert into hfhx_station
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="stationId != null" >
+        stationId,
+      </if>
+      <if test="stationCity != null" >
+        stationCity,
+      </if>
+      <if test="stationPlace != null" >
+        stationPlace,
+      </if>
+      <if test="stationAddress != null" >
+        stationAddress,
+      </if>
+      <if test="stationfloor != null" >
+        stationfloor,
+      </if>
+      <if test="stationroom != null" >
+        stationroom,
+      </if>
+      <if test="stationType != null" >
+        stationType,
+      </if>
+      <if test="createTime != null" >
+        createTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="stationId != null" >
+        #{stationId,jdbcType=VARCHAR},
+      </if>
+      <if test="stationCity != null" >
+        #{stationCity,jdbcType=VARCHAR},
+      </if>
+      <if test="stationPlace != null" >
+        #{stationPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="stationAddress != null" >
+        #{stationAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="stationfloor != null" >
+        #{stationfloor,jdbcType=VARCHAR},
+      </if>
+      <if test="stationroom != null" >
+        #{stationroom,jdbcType=VARCHAR},
+      </if>
+      <if test="stationType != null" >
+        #{stationType,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tansun.hf.hx.entity.HFHXStationEntity" >
+    update hfhx_station
+    <set >
+      <if test="stationId != null" >
+        stationId = #{stationId,jdbcType=VARCHAR},
+      </if>
+      <if test="stationCity != null" >
+        stationCity = #{stationCity,jdbcType=VARCHAR},
+      </if>
+      <if test="stationPlace != null" >
+        stationPlace = #{stationPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="stationAddress != null" >
+        stationAddress = #{stationAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="stationfloor != null" >
+        stationfloor = #{stationfloor,jdbcType=VARCHAR},
+      </if>
+      <if test="stationroom != null" >
+        stationroom = #{stationroom,jdbcType=VARCHAR},
+      </if>
+      <if test="stationType != null" >
+        stationType = #{stationType,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        createTime = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tansun.hf.hx.entity.HFHXStationEntity" >
+    update hfhx_station
+    set stationId = #{stationId,jdbcType=VARCHAR},
+      stationCity = #{stationCity,jdbcType=VARCHAR},
+      stationPlace = #{stationPlace,jdbcType=VARCHAR},
+      stationAddress = #{stationAddress,jdbcType=VARCHAR},
+      stationfloor = #{stationfloor,jdbcType=VARCHAR},
+      stationroom = #{stationroom,jdbcType=VARCHAR},
+      stationType = #{stationType,jdbcType=VARCHAR},
+      createTime = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+
+</mapper>

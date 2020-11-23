@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tansun.hf.hx.dao.HFHXDingDingMapper" >
+  <resultMap id="BaseResultMap" type="com.tansun.hf.hx.entity.HFHXDingDingDataEntity" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="groupId" property="groupId" jdbcType="VARCHAR" />
+    <result column="corpId" property="corpId" jdbcType="VARCHAR" />
+    <result column="access_token" property="access_token" jdbcType="VARCHAR" />
+    <result column="AppKey" property="AppKey" jdbcType="VARCHAR" />
+    <result column="AppSecret" property="AppSecret" jdbcType="VARCHAR" />
+    <result column="AgentId" property="AgentId" jdbcType="VARCHAR" />
+    <result column="createTime" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, groupId, corpId, access_token, AppKey, AppSecret, AgentId,createTime
+  </sql>
+  <select id="selectBygroupId" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from hfhx_dingdingdata
+    where groupId = #{groupId,jdbcType=VARCHAR}
+  </select>
+  <insert id="insert" parameterType="com.tansun.hf.hx.entity.HFHXDingDingDataEntity" >
+    insert into hfhx_dingdingdata (id, groupId, corpId, access_token, AppKey, AppSecret, AgentId,createTime)
+    values (#{id,jdbcType=VARCHAR}, #{groupId,jdbcType=VARCHAR}, #{corpId,jdbcType=VARCHAR},
+      #{access_token,jdbcType=VARCHAR}, #{AppKey,jdbcType=VARCHAR}, #{AppSecret,jdbcType=VARCHAR},
+      #{AgentId,jdbcType=VARCHAR},#{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.tansun.hf.hx.entity.HFHXDingDingDataEntity" >
+    insert into hfhx_dingdingdata
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null and id != ''" >
+        id,
+      </if>
+      <if test="groupId != null and groupId != ''" >
+        groupId,
+      </if>
+      <if test="corpId != null and corpId != ''" >
+        corpId,
+      </if>
+      <if test="access_token != null and access_token != ''" >
+        access_token,
+      </if>
+      <if test="AppKey != null and AppKey != ''" >
+        AppKey,
+      </if>
+      <if test="AppSecret != null and AppSecret != ''" >
+        AppSecret,
+      </if>
+      <if test="AgentId != null and AgentId != ''" >
+        AgentId,
+      </if>
+      <if test="createTime != null and createTime != ''" >
+        createTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null and id != ''" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="groupId != null and groupId != ''" >
+        #{groupId,jdbcType=VARCHAR},
+      </if>
+      <if test="corpId != null and corpId != ''" >
+        #{corpId,jdbcType=VARCHAR},
+      </if>
+      <if test="access_token != null and access_token != ''" >
+        #{access_token,jdbcType=VARCHAR},
+      </if>
+      <if test="AppKey != null and AppKey != ''" >
+        #{AppKey,jdbcType=VARCHAR},
+      </if>
+      <if test="AppSecret != null and AppSecret != ''" >
+        #{AppSecret,jdbcType=VARCHAR},
+      </if>
+      <if test="AgentId != null and AgentId != ''" >
+        #{AgentId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null and createTime != ''" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tansun.hf.hx.entity.HFHXDingDingDataEntity" >
+    update hfhx_dingdingdata
+    <set >
+      <if test="groupId != null and groupId != ''" >
+        groupId = #{groupId,jdbcType=VARCHAR},
+      </if>
+      <if test="corpId != null and corpId != ''" >
+        corpId = #{corpId,jdbcType=VARCHAR},
+      </if>
+      <if test="access_token != null and access_token != ''" >
+        access_token = #{access_token,jdbcType=VARCHAR},
+      </if>
+      <if test="AppKey != null and AppKey != ''" >
+        AppKey = #{AppKey,jdbcType=VARCHAR},
+      </if>
+      <if test="AppSecret != null and AppSecret != ''" >
+        AppSecret = #{AppSecret,jdbcType=VARCHAR},
+      </if>
+      <if test="AgentId != null and AgentId != ''" >
+        AgentId = #{AgentId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null and createTime != ''" >
+        createTime = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tansun.hf.hx.entity.HFHXDingDingDataEntity" >
+    update hfhx_dingdingdata
+    set groupId = #{groupId,jdbcType=VARCHAR},
+      corpId = #{corpId,jdbcType=VARCHAR},
+      access_token = #{access_token,jdbcType=VARCHAR},
+      AppKey = #{AppKey,jdbcType=VARCHAR},
+      AppSecret = #{AppSecret,jdbcType=VARCHAR},
+      AgentId = #{AgentId,jdbcType=VARCHAR},
+      createTime = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+
+</mapper>

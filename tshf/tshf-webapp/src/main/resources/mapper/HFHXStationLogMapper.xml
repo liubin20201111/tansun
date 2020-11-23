@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tansun.hf.hx.dao.HFHXStationLogMapper" >
+  <resultMap id="BaseResultMap" type="com.tansun.hf.hx.entity.HFHXStationLogEntity" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="memberId" property="memberId" jdbcType="VARCHAR" />
+    <result column="stationId" property="stationId" jdbcType="VARCHAR" />
+    <result column="stationLogType" property="stationLogType" jdbcType="VARCHAR" />
+    <result column="stationStatus" property="stationStatus" jdbcType="VARCHAR" />
+    <result column="createTime" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, memberId, stationId, stationLogType, stationStatus, createTime
+  </sql>
+<!--  <select id="selectByMemberIdnew" resultMap="BaseResultMap" parameterType="com.tansun.hf.hx.vo.QueryStationLogVo" >
+    select
+    <include refid="Base_Column_List" />
+    from hfhx_station_log
+    where memberId = #{memberId,jdbcType=VARCHAR}
+    &lt;!&ndash;<if test="startTime!=null and startTime!=''">
+     AND tm.add_time&gt;=#{startTime}
+    </if>
+    <if test="endTime!=null and endTime!=''">
+      AND tm.add_time &lt;=#{endTime}
+    </if>&ndash;&gt;
+   &lt;!&ndash; <if test="startTime!=null and startTime!=''">
+      <![CDATA[   and DATE_FORMAT(createTime, '%Y-%m-%d')>=  DATE_FORMAT(#{startTime}, '%Y-%m-%d')   ]]>
+    </if>
+    <if test="endTime!=null and endTime!=''">
+      <![CDATA[  and DATE_FORMAT(createTime, '%Y-%m-%d') < DATE_FORMAT(#{endTime}, '%Y-%m-%d')    ]]>
+    </if>&ndash;&gt;
+  </select>-->
+  <select id="selectByMemberIdnew" parameterType="com.tansun.hf.hx.vo.QueryStationLogVo" resultMap="BaseResultMap">
+    select
+    id as id,
+    memberId as memberId,
+    stationId as stationId,
+    stationLogType as stationLogType,
+    stationStatus as stationStatus,
+    createTime as createTime
+    from
+    hfhx_station_log
+    where 1=1
+    <if test="memberId != null and memberId !=''" >
+      and memberId = #{memberId,jdbcType=VARCHAR}
+    </if>
+    <if test="stationLogType != null and stationLogType !=''" >
+      and stationLogType = #{stationLogType,jdbcType=VARCHAR}
+    </if>
+    <if test="startTime!=null and startTime!=''">
+      <![CDATA[   and DATE_FORMAT(createTime, '%Y-%m-%d')>=  DATE_FORMAT(#{startTime}, '%Y-%m-%d')   ]]>
+    </if>
+    <if test="endTime!=null and endTime!=''">
+      <![CDATA[  and DATE_FORMAT(createTime, '%Y-%m-%d') < DATE_FORMAT(#{endTime}, '%Y-%m-%d')    ]]>
+    </if>
+  </select>
+  <insert id="insert" parameterType="com.tansun.hf.hx.entity.HFHXStationLogEntity" >
+    insert into hfhx_station_log (id, memberId, stationId, stationLogType, stationStatus, createTime)
+    values (#{id,jdbcType=VARCHAR}, #{memberId,jdbcType=VARCHAR}, #{stationId,jdbcType=VARCHAR}, 
+      #{stationLogType,jdbcType=VARCHAR}, #{stationStatus,jdbcType=VARCHAR},#{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.tansun.hf.hx.entity.HFHXStationLogEntity" >
+    insert into hfhx_station_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="memberId != null" >
+        memberId,
+      </if>
+      <if test="stationId != null" >
+        stationId,
+      </if>
+      <if test="stationLogType != null" >
+        stationLogType,
+      </if>
+      <if test="stationStatus != null" >
+        stationStatus,
+      </if>
+      <if test="createTime != null" >
+        createTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="memberId != null" >
+        #{memberId,jdbcType=VARCHAR},
+      </if>
+      <if test="stationId != null" >
+        #{stationId,jdbcType=VARCHAR},
+      </if>
+      <if test="stationLogType != null" >
+        #{stationLogType,jdbcType=VARCHAR},
+      </if>
+      <if test="stationStatus != null" >
+        #{stationStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tansun.hf.hx.entity.HFHXStationLogEntity" >
+    update hfhx_station_log
+    <set >
+      <if test="memberId != null" >
+        memberId = #{memberId,jdbcType=VARCHAR},
+      </if>
+      <if test="stationId != null" >
+        stationId = #{stationId,jdbcType=VARCHAR},
+      </if>
+      <if test="stationLogType != null" >
+        stationLogType = #{stationLogType,jdbcType=VARCHAR},
+      </if>
+      <if test="stationStatus != null" >
+        stationStatus = #{stationStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        createTime = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tansun.hf.hx.entity.HFHXStationLogEntity" >
+    update hfhx_station_log
+    set memberId = #{memberId,jdbcType=VARCHAR},
+      stationId = #{stationId,jdbcType=VARCHAR},
+      stationLogType = #{stationLogType,jdbcType=VARCHAR},
+      stationStatus = #{stationStatus,jdbcType=VARCHAR},
+      createTime = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <!--<select id="selectByMemberId" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from hfhx_station_log
+    where memberId = #{memberId,jdbcType=VARCHAR}
+  </select>-->
+  <select id="selectByMemberId" parameterType="java.lang.String" resultType="com.tansun.hf.hx.entity.HFHXStationLogEntity">
+    select
+    id as id,
+    memberId as memberId,
+    stationId as stationId,
+    stationLogType as stationLogType,
+    stationStatus as stationStatus,
+    createTime as createTime
+    from
+    hfhx_station_log
+    where
+    memberId = #{memberId}
+  </select>
+</mapper>

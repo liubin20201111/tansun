@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tansun.hf.hx.dao.HFHXMemberVisitMapper" >
+  <resultMap id="BaseResultMap" type="com.tansun.hf.hx.entity.HFHXMemberVisitEntity" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="memberId" property="memberId" jdbcType="VARCHAR" />
+    <result column="memberNumber" property="memberNumber" jdbcType="VARCHAR" />
+    <result column="memberName" property="memberName" jdbcType="VARCHAR" />
+    <result column="memberPhone" property="memberPhone" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="memberType" property="memberType" jdbcType="VARCHAR" />
+    <result column="company" property="company" jdbcType="VARCHAR" />
+    <result column="stationId" property="stationId" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="statusType" property="statusType" jdbcType="VARCHAR" />
+    <result column="dingDingId" property="dingDingId" jdbcType="VARCHAR" />
+    <result column="createTime" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, memberId, memberNumber, memberName, memberPhone, password, memberType,company,stationId,status,statusType,dingDingId,createTime
+  </sql>
+  <select id="selectByMemberId" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from hfhx_member_visit
+    where status = '1' and  memberId = #{memberId,jdbcType=VARCHAR}
+  </select>
+  <insert id="insert" parameterType="com.tansun.hf.hx.entity.HFHXMemberVisitEntity" >
+    insert into hfhx_member_visit (id, memberId, memberNumber, memberName, memberPhone, password, memberType,company,station,status,statusType,dingDingId,createTime)
+    values (#{id,jdbcType=VARCHAR}, #{memberId,jdbcType=VARCHAR}, #{memberNumber,jdbcType=VARCHAR}, 
+      #{memberName,jdbcType=VARCHAR}, #{memberPhone,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{memberType,jdbcType=VARCHAR}, #{company,jdbcType=VARCHAR}, #{stationId,jdbcType=VARCHAR}, 
+      #{status,jdbcType=VARCHAR}, #{statusType,jdbcType=VARCHAR}, #{dingDingId,jdbcType=VARCHAR},#{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.tansun.hf.hx.entity.HFHXMemberVisitEntity" >
+    insert into hfhx_member_visit
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="memberId != null" >
+        memberId,
+      </if>
+      <if test="memberNumber != null" >
+        memberNumber,
+      </if>
+      <if test="memberName != null" >
+        memberName,
+      </if>
+      <if test="memberPhone != null" >
+        memberPhone,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="memberType != null" >
+        memberType,
+      </if>
+      <if test="company != null" >
+        company,
+      </if>
+      <if test="stationId != null" >
+        stationId,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="statusType != null" >
+        statusType,
+      </if>
+      <if test="dingDingId != null" >
+        dingDingId,
+      </if>
+      <if test="createTime != null" >
+        createTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="memberId != null" >
+        #{memberId,jdbcType=VARCHAR},
+      </if>
+      <if test="memberNumber != null" >
+        #{memberNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="memberName != null" >
+        #{memberName,jdbcType=VARCHAR},
+      </if>
+      <if test="memberPhone != null" >
+        #{memberPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="memberType != null" >
+        #{memberType,jdbcType=VARCHAR},
+      </if>
+      <if test="company != null" >
+        #{company,jdbcType=VARCHAR},
+      </if>
+      <if test="stationId != null" >
+        #{stationId,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="statusType != null" >
+        #{statusType,jdbcType=VARCHAR},
+      </if>
+      <if test="dingDingId != null" >
+        #{dingDingId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tansun.hf.hx.entity.HFHXMemberVisitEntity" >
+    update hfhx_member_visit
+    <set >
+      <if test="memberId != null" >
+        memberId = #{memberId,jdbcType=VARCHAR},
+      </if>
+      <if test="memberNumber != null" >
+        memberNumber = #{memberNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="memberName != null" >
+        memberName = #{memberName,jdbcType=VARCHAR},
+      </if>
+      <if test="memberPhone != null" >
+        memberPhone = #{memberPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="memberType != null" >
+        memberType = #{memberType,jdbcType=VARCHAR},
+      </if>
+      <if test="company != null" >
+        company = #{company,jdbcType=VARCHAR},
+      </if>
+      <if test="stationId != null" >
+        stationId = #{stationId,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="statusType != null" >
+        statusType = #{statusType,jdbcType=VARCHAR},
+      </if>
+      <if test="dingDingId != null" >
+        dingDingId = #{dingDingId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        createTime = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tansun.hf.hx.entity.HFHXMemberVisitEntity" >
+    update hfhx_member_visit
+    set memberId = #{memberId,jdbcType=VARCHAR},
+      memberNumber = #{memberNumber,jdbcType=VARCHAR},
+      memberName = #{memberName,jdbcType=VARCHAR},
+      memberPhone = #{memberPhone,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      memberType = #{memberType,jdbcType=VARCHAR},
+      company = #{company,jdbcType=VARCHAR},
+      stationId = #{stationId,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      statusType = #{statusType,jdbcType=VARCHAR},
+      dingDingId = #{dingDingId,jdbcType=VARCHAR},
+      createTime = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+
+  <select id="selectBymemberPhone" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from hfhx_member_visit
+    where status = "1" and  memberPhone = #{memberPhone,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByDingDingId" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from hfhx_member_visit
+    where status = "1" and dingDingId = #{dingDingId,jdbcType=VARCHAR}
+  </select>
+
+</mapper>
